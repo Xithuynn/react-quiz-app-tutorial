@@ -1,8 +1,66 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
+
+const quizData = [
+  {
+    id: 1,
+    question: "What does HTML stand for?",
+    options: [
+      "Hyper Text Markup Language",
+      "High Text Machine Language",
+      "Hyperlink Text Management Language",
+      "Home Tool Markup Language"
+    ],
+    correctAnswer: "Hyper Text Markup Language"
+  },
+  {
+    id: 2,
+    question: "Which language is used to style web pages?",
+    options: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Python"
+    ],
+    correctAnswer: "CSS"
+  },
+  {
+    id: 3,
+    question: "Which React hook is used to manage state?",
+    options: [
+      "useEffect",
+      "useState",
+      "useContext",
+      "useRef"
+    ],
+    correctAnswer: "useState"
+  }
+];
+
+
+
 function App() {
-  
+      const [currentQuestion,setCurrentQuestion] = useState(1)
+      const[selectedAnswer,SetSelectedAnswer] = useState(null)
+      const[isAnswered, setIsAnswered] =useState(false)
+      const question = quizData[currentQuestion]
+      const [isFinished, setIsFinished] = useState(true)
+
+      useEffect(()=>{
+        
+        
+      })
+
+       function handleClick(option) {
+
+          if(isAnswered) return;
+          setIsAnswered(!isAnswered)
+           SetSelectedAnswer(option)
+           if(question.answer == selectedAnswer) console.log("correct")
+            else console.log("incorrect")
+          console.log(isAnswered)
+         }
   return (
     
        <div className='min-h-screen bg-blue-500 flex justify-center items-center '>  
@@ -11,15 +69,21 @@ function App() {
                     <h3>မေးခွန်းများ</h3>
                 </div>
                 <div className ="question-box scrollbar-hover">
-                    <p className='para-format'>  lor sit amet consectetur adipisicing elit. Nulla quia officia esse est eveniet delectus dolores ipsa amet quae beatae voluptatem, laboriosam cum reiciendis, sequi provident nihil! Po Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione earum excepturi voluptate beatae sequi voluptatibus nulla atque quas dolor, libero, culpa rem reiciendis nam laboriosam alias inventore vel, cupiditate recusandae. rro, et illum. </p>
+                    <p className='para-format'> {question.question} </p>
                 </div>
 
                 <div className='btn-box'>
-                        <button className='btn-primary'>Answer 1</button>
-                        <button className='btn-primary'>Answer 1</button>
-                        <button className='btn-primary'>Answer 1</button>
-                        <button className='btn-primary'>Answer 1</button>
-                        
+                    {
+                        question.options.map((option)=>(
+                            <button className={`transition duration-300 ${selectedAnswer === option? "btn-clicked" :isAnswered? "btn-answered": "btn-primary"}`} 
+                                    key={option} 
+                                    onClick={()=>{handleClick(option)}}
+                                    disabled={isAnswered}
+                                    >
+                                {option}
+                            </button>
+                        ))
+                    }
                 </div>
             </div>
             
