@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const quizData = [
   {
@@ -63,8 +64,12 @@ function App() {
          }
   return (
     
-       <div className='min-h-screen bg-blue-500 flex justify-center items-center '>  
-            <div className='w-3/4 h-120 bg-white p-10 rounded-2xl  overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.2)] flex flex-col'>
+       <div className='min-h-screen bg-blue-500 flex justify-center items-center  '>  
+                  
+            <div className='w-3/4 h-120 bg-white p-10 rounded-2xl  overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.2)] flex flex-col  relative '>
+                 <button className='absolute left-1 bg-amber-300 rounded-3xl p-1 top-2/5'> <ArrowBackIcon/> </button>
+                    <button className='absolute right-1 bg-amber-300 rounded-4xl p-1 top-2/5 '> <ArrowForwardIcon/> </button>
+               
                 <div>
                     <h3>မေးခွန်းများ</h3>
                 </div>
