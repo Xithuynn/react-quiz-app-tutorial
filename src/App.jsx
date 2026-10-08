@@ -42,7 +42,7 @@ const quizData = [
 
 
 function App() {
-      const [currentQuestion,setCurrentQuestion] = useState(1)
+      const [currentQuestion,setCurrentQuestion] = useState(0)
       const[selectedAnswer,SetSelectedAnswer] = useState(null)
       const[isAnswered, setIsAnswered] =useState(false)
       const question = quizData[currentQuestion]
@@ -62,13 +62,36 @@ function App() {
             else console.log("incorrect")
           console.log(isAnswered)
          }
+
+        const previousQuestion = () => {
+            setCurrentQuestion((prev) => prev-1 )
+            console.log(currentQuestion)
+        }
+         const nextQuestion = () => {
+            if(currentQuestion === quizData.length -1 ) {
+              setIsFinished(!isFinished)
+              return
+            }
+                ;
+            setCurrentQuestion((prev) => prev+1 )
+            console.log(currentQuestion , quizData.length)
+        }
   return (
     
        <div className='min-h-screen bg-blue-500 flex justify-center items-center  '>  
                   
             <div className='w-3/4 h-120 bg-white p-10 rounded-2xl  overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.2)] flex flex-col  relative '>
-                 <button className='absolute left-1 bg-amber-300 rounded-3xl p-1 top-2/5'> <ArrowBackIcon/> </button>
-                    <button className='absolute right-1 bg-amber-300 rounded-4xl p-1 top-2/5 '> <ArrowForwardIcon/> </button>
+                 <button 
+                      className='left-1 arrow-btn'
+                      onClick={()=>previousQuestion}> 
+                      <ArrowBackIcon/>    
+                  </button>
+                    <button className={` ${isFinished? "arrow-btn right-1 opacity-100" : "opacity-0"}`}
+        
+                            onClick={ nextQuestion}
+                    >
+                       <ArrowForwardIcon/> 
+                    </button>
                
                 <div>
                     <h3>မေးခွန်းများ</h3>

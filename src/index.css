@@ -14,6 +14,9 @@
                @apply bg-teal-500 w-full max-h-15 text-white font-semibold px-6 py-3 rounded-xl shadow-md  transition duration-200 cursor-not-allowed overflow-y-auto
 
     }
+    .arrow-btn {
+      @apply absolute  bg-amber-200 rounded-4xl p-1 top-2/5 hover:bg-amber-500 transition duration-200
+    }
     .question-box {
         @apply bg-green-200 text-gray-500 min-h-2/5 mt-auto px-6 py-3 rounded-xl  w-full max-h-3/5 overflow-y-auto
     }
